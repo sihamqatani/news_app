@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsrapp/modules/search/search.dart';
+import 'package:newsrapp/shared/components/component.dart';
 import 'package:newsrapp/shared/cubit/news_cubit.dart';
 import 'package:newsrapp/shared/cubit/news_states.dart';
 
@@ -7,7 +9,7 @@ class NewsLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NewsAppCubit()..getBusiness(),
+      create: (context){},
       child: BlocConsumer<NewsAppCubit, NewsAppStates>(
           listener: (context, state) {},
           builder: (context, state) {
@@ -18,7 +20,15 @@ class NewsLayout extends StatelessWidget {
                 actions: [
                   IconButton(
                     icon: Icon(Icons.search),
-                    onPressed: () {},
+                    onPressed: () {
+                      navigateTo(context, Search());
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.brightness_4_outlined),
+                    onPressed: () {
+                      cubit.changeAppMode();
+                    },
                   )
                 ],
                 title: Text('News App'),
